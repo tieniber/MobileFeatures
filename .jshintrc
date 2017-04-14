@@ -1,0 +1,28 @@
+{
+    // Enforcing
+    "curly"    : false,
+    "forin"    : false,
+    "latedef"  : "nofunc",
+    "newcap"   : true,
+    "quotmark" : "double",
+    "eqeqeq"   : true,
+    "undef"    : true,
+    "globals"  : {
+        "mendix" : false,
+        "mx"     : false,
+        "logger" : false,
+        "device" : false,
+        "StatusBar": false,
+        "Connection": false,
+        "cordova": false
+    },
+
+    // Relaxing
+    "laxbreak" : true,
+
+    // Environments
+    "browser"  : true,
+    "devel"    : true,
+    "dojo"     : true,
+    "-W030"     : true
+}
