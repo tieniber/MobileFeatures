@@ -19,7 +19,7 @@ define([
         _spinnerShowing: false,
         _spinnerShowPending: false,
 
-        _spinnerMessageId: 0,
+        _spinnerMessageId: 1,
         _spinnerMessages: null,
 
         _findInArray: function(array, test, scope) {
