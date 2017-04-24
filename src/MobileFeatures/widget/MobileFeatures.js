@@ -20,14 +20,12 @@ define([
 
         _debuggingKey: "MobileFeatures_debugging",
 
-        enableDebugging: false,
-
         _getDebugging: function () {
             logger.debug(this.id + "._getDebugging");
             var storage = window.localStorage;
             var val = storage.getItem(this._debuggingKey);
             if (val) {
-                this.enableDebugging = true;
+                window.__MobileFeatures_debugging = true;
             } else {
                 this.setDebugging(false);
             }
@@ -36,14 +34,16 @@ define([
         setDebugging: function (val) {
             var storage = window.localStorage;
             storage.setItem(this._debuggingKey, val);
-            this.enableDebugging = val;
+            window.__MobileFeatures_debugging = val;
         },
 
         postCreate: function() {
             this.debug(this.id + ".postCreate");
 
             window.__MobileFeaturesWidget = this;
-            this._getDebugging();
+            if (typeof window.__MobileFeatures_debugging === "undefined") {
+                this._getDebugging();
+            }
 
             this.spinnerEnabled && this._enableSpinner();
             this.dialogEnabled && this._enableDialog();
@@ -63,7 +63,7 @@ define([
         },
 
         debug: function() {
-            if (this.enableDebugging) {
+            if (window.__MobileFeatures_debugging) {
                 console.log.apply(console, arguments);
             } else {
                 logger.debug.apply(this, arguments);
