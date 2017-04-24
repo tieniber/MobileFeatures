@@ -23,7 +23,7 @@ define([
         _transitionClassesObserver: null,
 
         _enableClasses: function() {
-            this.debug(this.id + "._enableClasses");
+            this.debug("._enableClasses");
 
             ready(lang.hitch(this, this._setupClassesMutationObserver));
 
@@ -51,7 +51,7 @@ define([
         },
 
         _setupClassesMutationObserver: function() {
-            this.debug(this.id + "._setupClassesMutationObserver");
+            this.debug("._setupClassesMutationObserver");
             var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
             this._transitionClassesObserver = new MutationObserver(lang.hitch(this, this._setupClassListeners));
@@ -81,7 +81,7 @@ define([
             if (elements.length === 0) {
                 return;
             } else {
-                this.debug(this.id + "._setTypes " + formClass + " " + elements.length + " found");
+                this.debug("._setTypes " + formClass + " " + elements.length + " found");
             }
 
             array.forEach(elements, lang.hitch(this, function (element, index) {
@@ -110,7 +110,7 @@ define([
         },
 
         _disableClasses: function () {
-            this.debug(this.id + "._disableClasses");
+            this.debug("._disableClasses");
             if (this._transitionClassesObserver) {
                 this._transitionClassesObserver.disconnect();
             }

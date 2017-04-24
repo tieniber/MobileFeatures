@@ -10,7 +10,7 @@ define([
         dialogEnabled: true,
 
         _enableDialog: function() {
-            this.debug(this.id + "._enableDialog");
+            this.debug("._enableDialog");
             if (navigator && navigator.notification && (typeof mx.ui.mobileDialogLoaded === "undefined" || mx.ui.mobileDialogLoaded === null || mx.ui.mobileDialogLoaded === false)) {
                 mx.ui.mobileDialogLoaded = true;
                 mx.ui.confirmation = lang.hitch(this, this._confirmationReplacement);
@@ -19,13 +19,15 @@ define([
                 mx.ui.warning = lang.hitch(this, this._warningReplacement);
                 mx.ui.error = lang.hitch(this, this._errorReplacement);
 
+            } else if (mx.ui.mobileDialogLoaded === true) {
+                this.debug("._enableDialog not loaded, already enabled");
             } else {
                 console.warn(this.id + "._enableDialog dialog not enabled. Either already enabled or 'cordova-plugin-dialogs' plugin missing in Phonegap");
             }
         },
 
         _confirmationReplacement: function(args) {
-            this.debug(this.id + "._confirmationReplacement");
+            this.debug("._confirmationReplacement");
             navigator.notification.confirm(args.content, function(buttonNum) {
                 if (buttonNum === 1) {
                     args.handler();

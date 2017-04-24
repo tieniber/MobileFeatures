@@ -22,7 +22,7 @@ define([
         _errorBar: null,
 
         _enableCustomConnectionError: function() {
-            this.debug(this.id + "._enableCustomConnectionError");
+            this.debug("._enableCustomConnectionError");
 
             if (!ConnectionError) {
                 console.warn(this.id + "Connection Error Replacement: Cannot find mendix.lib.ConnectionError");
@@ -70,7 +70,7 @@ define([
         },
 
         _showConnectionError: function(state) {
-            this.debug(this.id + "._showConnectionError");
+            this.debug("._showConnectionError");
             if (this._errorBar) {
                 domClass.toggle(this._errorBar, "hidden", false);
                 domClass.toggle(this._errorBar, "closed", !state);

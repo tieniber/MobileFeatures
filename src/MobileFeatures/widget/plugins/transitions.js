@@ -24,7 +24,7 @@ define([
         _onNavigation: null,
 
         _enableTransitions: function() {
-            this.debug(this.id + "._enableTransitions");
+            this.debug("._enableTransitions");
 
             ready(lang.hitch(this, this._setupMutationObserver));
             //this._setupMutationObserver();
@@ -46,7 +46,7 @@ define([
         },
 
         _cleanupTransitions: function() {
-            this.debug(this.id + "._cleanupTransitions");
+            this.debug("._cleanupTransitions");
             if (this._transitionObserver) {
                 this._transitionObserver.disconnect();
             }
@@ -57,7 +57,7 @@ define([
         },
 
         _setupMutationObserver: function() {
-            this.debug(this.id + "._setupMutationObserver");
+            this.debug("._setupMutationObserver");
             var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
             this._transitionObserver = new MutationObserver(lang.hitch(this, this._setupListeners));
@@ -77,7 +77,7 @@ define([
         },
 
         _setupListeners: function() {
-            this.debug(this.id + "._setupListeners");
+            this.debug("._setupListeners");
             this._disconnectListeners();
             if (typeof window.plugins !== "undefined" && typeof window.plugins.nativepagetransitions !== "undefined") {
                 // Setup handlers here
@@ -102,7 +102,7 @@ define([
             if (elements.length === 0) {
                 return;
             } else {
-                this.debug(this.id + "._addTransition " + className + " " + elements.length + " found");
+                this.debug("._addTransition " + className + " " + elements.length + " found");
             }
 
             if (transitionType === "fade") {
@@ -156,7 +156,7 @@ define([
         },
 
         _prepTransition: function(deferred) {
-            this.debug(this.id + "._prepTransition");
+            this.debug("._prepTransition");
             //instead of setting up a pending when a button is clicked, we're just going to leave options on the plugin object, then prep it before onNavigation.
             //Then we'll call the actual animation after onNavigation
             //This should solve a bunch of problems with taking a screenshot too early, and covering up things like errors
@@ -187,7 +187,7 @@ define([
         },
 
         _fireTransition: function(deferred) {
-            this.debug(this.id + "._fireTransition");
+            this.debug("._fireTransition");
             //Cancel a pending cancel transition timeout
             clearTimeout(this._pendingTimeout);
 
@@ -207,7 +207,7 @@ define([
         },
 
         _cancelTransition: function() {
-            this.debug(this.id + "._cancelTransition");
+            this.debug("._cancelTransition");
             window.plugins.nativepagetransitions.cancelPendingTransition(
 
             function(msg) {

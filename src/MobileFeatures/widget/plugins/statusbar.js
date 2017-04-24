@@ -15,7 +15,7 @@ define([
         statusbarOverlayWebView: true,
 
         _enableStatusbar: function() {
-            this.debug(this.id + "._enableStatusbar");
+            this.debug("._enableStatusbar");
 
             // Platform
             if (typeof StatusBar !== "undefined") {

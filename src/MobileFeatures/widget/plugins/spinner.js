@@ -38,7 +38,7 @@ define([
 
         // spinner
         _enableSpinner: function() {
-            this.debug(this.id + "._enableSpinner");
+            this.debug("._enableSpinner");
 
             if (window.SpinnerPlugin && !mx.ui.hideProgressOrig) {
                 mx.ui.showProgressOrig = mx.ui.showProgress;
@@ -53,7 +53,7 @@ define([
 
                 this._spinnerMessages = [];
             } else if (!!mx.ui.hideProgressOrig) {
-                console.warn(this.id + "._enableSpinner spinner is already enabled. Have you added the widget twice?");
+                this.debug("._enableSpinner spinner is already enabled. Locking previous one");
                 if (!window.__SpinnerLock) {
                     window.__SpinnerLock = true;
                 }
@@ -64,11 +64,11 @@ define([
 
         _disableSpinner: function() {
             if (window.__SpinnerLock) {
-                console.warn(this.id + "._disableSpinner not running, got another instance requesting this.");
+                this.debug("._disableSpinner not running, got another instance requesting this.");
                 window.__SpinnerLock = false;
                 return;
             }
-            this.debug(this.id + "._disableSpinner");
+            this.debug("._disableSpinner");
             if (mx.ui.hideProgressOrig) {
                 mx.ui.hideProgress = mx.ui.hideProgressOrig;
                 mx.ui.hideProgressOrig = null;
@@ -80,7 +80,7 @@ define([
         },
 
         _spinnerShowProgressReplacement: function(msg, modal) {
-            this.debug(this.id + "._spinnerShowProgressReplacement");
+            this.debug("._spinnerShowProgressReplacement");
             var id = this._spinnerMessageId++;
             this._spinnerMessages.push({
                 id: id,
@@ -98,10 +98,10 @@ define([
                         !!msg ? msg : null,
                         !!msg ? this.spinnerOptions : { dimBackground: false },
                         lang.hitch(this, function () {
-                            this.debug(this.id + "._spinnerShow succes");
+                            this.debug("._spinnerShow succes");
                         }),
                         lang.hitch(this, function () {
-                            this.debug(this.id + "._spinnerShow failed");
+                            this.debug("._spinnerShow failed");
                         })
                     );
                 }), this.spinnerDelay);
@@ -110,7 +110,7 @@ define([
         },
 
         _spinnerHideProgressReplacement: function(pid) {
-            this.debug(this.id + "._spinnerHideProgressReplacement " + pid + "/" + this._spinnerShowPending);
+            this.debug("._spinnerHideProgressReplacement " + pid + "/" + this._spinnerShowPending);
 
             var message = this._findInArray(this._spinnerMessages, function (msg) {
                 return msg.id === pid;
@@ -123,10 +123,10 @@ define([
                 this._spinnerShowing = false;
                 window.SpinnerPlugin.activityStop(
                     lang.hitch(this, function () {
-                        this.debug(this.id + "._spinnerHide succes");
+                        this.debug("._spinnerHide succes");
                     }),
                     lang.hitch(this, function () {
-                        this.debug(this.id + "._spinnerHide failed");
+                        this.debug("._spinnerHide failed");
                     })
                 );
                 if (message) {
@@ -137,17 +137,17 @@ define([
                 this._spinnerShowing = false;
                 window.SpinnerPlugin.activityStop(
                     lang.hitch(this, function () {
-                        this.debug(this.id + "._spinnerHide succes");
+                        this.debug("._spinnerHide succes");
                     }),
                     lang.hitch(this, function () {
-                        this.debug(this.id + "._spinnerHide failed");
+                        this.debug("._spinnerHide failed");
                     })
                 );
                 this._removeMsg(pid);
             } else if (pid !== null && pid !== undefined) {
                 mx.ui.hideProgressOrig(pid);
             } else {
-                this.debug(this.id + "._spinnerHideProgressReplacement not closing this progress, not triggered by plugin");
+                this.debug("._spinnerHideProgressReplacement not closing this progress, not triggered by plugin");
             }
         },
 

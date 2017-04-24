@@ -8,15 +8,20 @@ define([
     "MobileFeatures/widget/plugins/transitions",
     "MobileFeatures/widget/plugins/classes",
     "MobileFeatures/widget/plugins/statusbar",
-    "MobileFeatures/widget/plugins/customconnectionerror"
+    "MobileFeatures/widget/plugins/customconnectionerror",
+    "MobileFeatures/widget/plugins/advanced"
 
-], function(declare, _WidgetBase, lang, spinner, dialog, transitions, classes, statusbar, customconnectionerror) {
+], function(declare, _WidgetBase, lang, spinner, dialog, transitions, classes, statusbar, customconnectionerror, advanced) {
     "use strict";
 
     return declare("MobileFeatures.widget.MobileFeatures", [
         _WidgetBase,
-        spinner, dialog, transitions, classes, statusbar, customconnectionerror
+        spinner, dialog, transitions, classes, statusbar, customconnectionerror, advanced
     ], {
+
+        constructor: function () {
+            this.advancedListViewLazyLoad && this._enableListViewLazyLoad();
+        },
 
         _debuggingKey: "MobileFeatures_debugging",
 
@@ -25,7 +30,7 @@ define([
             var storage = window.localStorage;
             var val = storage.getItem(this._debuggingKey);
             if (val) {
-                window.__MobileFeatures_debugging = true;
+                window.__MobileFeatures_debugging = val === "true";
             } else {
                 this.setDebugging(false);
             }
@@ -38,7 +43,7 @@ define([
         },
 
         postCreate: function() {
-            this.debug(this.id + ".postCreate");
+            this.debug(".postCreate");
 
             window.__MobileFeaturesWidget = this;
             if (typeof window.__MobileFeatures_debugging === "undefined") {
@@ -54,7 +59,7 @@ define([
         },
 
         uninitialize: function() {
-            this.debug(this.id + ".uninitialize");
+            this.debug(".uninitialize");
 
             this._disableClasses();
             this.spinnerEnabled && this._disableSpinner();
@@ -63,6 +68,7 @@ define([
         },
 
         debug: function() {
+            [].unshift.call(arguments, this.id);
             if (window.__MobileFeatures_debugging) {
                 console.log.apply(console, arguments);
             } else {

@@ -165,5 +165,11 @@
             <category>Connection Error</category>
             <description>Time (in milliseconds) the error will be shown</description>
         </property>-->
+        <property key="advancedListViewLazyLoad" type="boolean" defaultValue="true">
+            <caption>List view lazy load</caption>
+            <category>Advanced</category>
+            <description>When this feature is turned on the list view will render the items after the page is loaded which can greatly increase the user experience.
+Note: this is an experimental feature. Switch it off if you experience problems.</description>
+        </property>
     </properties>
 </widget>

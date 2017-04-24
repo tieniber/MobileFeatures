@@ -1,6 +1,6 @@
 {
   "name": "MobileFeatures",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Features for Mobile",
   "license": "Apache 2",
   "author": "J.W. Lagendijk <jelte.lagendijk@mendix.com>",
@@ -25,7 +25,7 @@
   },
   "generatorVersion": "2.0.4",
   "paths": {
-    "testProjectFolder": "./test/",
+    "testProjectFolder": "C:\\Projects\\MendixProjects\\MobileQuickStarterApp-main\\",
     "testProjectFileName": "Test.mpr"
   },
   "scripts": {
