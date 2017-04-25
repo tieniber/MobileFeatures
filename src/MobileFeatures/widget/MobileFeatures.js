@@ -19,8 +19,11 @@ define([
         spinner, dialog, transitions, classes, statusbar, customconnectionerror, advanced
     ], {
 
+        _phonegapEnabled: false,
+
         constructor: function () {
-            this.advancedListViewLazyLoad && this._enableListViewLazyLoad();
+            this._phonegapEnabled = (typeof cordova !== "undefined");
+            this._phonegapEnabled && this.advancedListViewLazyLoad && this._enableListViewLazyLoad();
         },
 
         _debuggingKey: "MobileFeatures_debugging",
@@ -50,21 +53,27 @@ define([
                 this._getDebugging();
             }
 
-            this.spinnerEnabled && this._enableSpinner();
-            this.dialogEnabled && this._enableDialog();
-            this.transitionsEnabled && this._enableTransitions();
-            this._enableClasses();
-            this.statusbarEnabled && this._enableStatusbar();
-            this.customConnectionErrorEnabled && this._enableCustomConnectionError();
+            if (this._phonegapEnabled) {
+                this.spinnerEnabled && this._enableSpinner();
+                this.dialogEnabled && this._enableDialog();
+                this.transitionsEnabled && this._enableTransitions();
+                this._enableClasses();
+                this.statusbarEnabled && this._enableStatusbar();
+                this.customConnectionErrorEnabled && this._enableCustomConnectionError();
+            } else {
+                console.warn(this.id + " widget is only enabled in Hybrid Mobile app (Phonegap)");
+            }
         },
 
         uninitialize: function() {
             this.debug(".uninitialize");
 
-            this._disableClasses();
-            this.spinnerEnabled && this._disableSpinner();
-            this.transitionsEnabled && this._cleanupTransitions();
-            this.customConnectionErrorEnabled && this._disableCustomConnectionError();
+            if (this._phonegapEnabled) {
+                this._disableClasses();
+                this.spinnerEnabled && this._disableSpinner();
+                this.transitionsEnabled && this._cleanupTransitions();
+                this.customConnectionErrorEnabled && this._disableCustomConnectionError();
+            }
         },
 
         debug: function() {
