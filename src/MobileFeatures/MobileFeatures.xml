@@ -171,5 +171,11 @@
             <description>When this feature is turned on the list view will render the items after the page is loaded which can greatly increase the user experience.
 Note: this is an experimental feature. Switch it off if you experience problems.</description>
         </property>
+        <property key="advancedGroupboxLazyLoad" type="boolean" defaultValue="true">
+            <caption>Group box lazy load</caption>
+            <category>Advanced</category>
+            <description>When this feature is turned on the group box will render the items after the page is loaded which can greatly increase the user experience.
+Note: this is an experimental feature. Switch it off if you experience problems.</description>
+        </property>
     </properties>
 </widget>

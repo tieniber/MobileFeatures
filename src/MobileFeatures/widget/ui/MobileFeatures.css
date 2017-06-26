@@ -35,3 +35,10 @@
     -webkit-transition-property: top;
     -webkit-transition-duration: 0.5s;
 }
+
+.mx-groupbox.lazy,
+.mx-groupbox.lazy > div.mx-groupbox-body {
+    padding: 0!important;
+    margin: 0!important;
+    border: 0!important;
+}

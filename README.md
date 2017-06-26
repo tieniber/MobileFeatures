@@ -82,3 +82,15 @@ This feature will override the normal Mendix dialog with a native mobile one.
 ### Connection Error
 
 This feature is planned for a next version
+
+### Advanced
+
+**Note: These are all experimental options and might break in future Mendix versions. Please switch them off if it causes any problems (and create an issue here)**
+
+- List view lazy load
+
+When this feature is turned on the list view will render the items after the page is loaded which can greatly increase the user experience.
+
+- Group box lazy load
+
+When this feature is turned on the group box will render the items after the page is loaded which can greatly increase the user experience. You can add the `lazy` class to the groupbox to remove the spacing and borders.
