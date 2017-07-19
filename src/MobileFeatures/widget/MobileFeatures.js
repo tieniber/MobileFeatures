@@ -24,7 +24,7 @@ define([
         constructor: function () {
             this._phonegapEnabled = (typeof cordova !== "undefined");
             this._phonegapEnabled && this.advancedListViewLazyLoad && this._enableListViewLazyLoad();
-            this._phonegapEnabled && this.advancedListViewLazyLoad && this._enableGroupboxLazyLoad();
+            this._phonegapEnabled && this.advancedGroupboxLazyLoad && this._enableGroupboxLazyLoad();
         },
 
         _debuggingKey: "MobileFeatures_debugging",
