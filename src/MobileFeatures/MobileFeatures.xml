@@ -177,6 +177,20 @@ Note: this is an experimental feature. Switch it off if you experience problems.
             <description>When this feature is turned on the group box will render the items after the page is loaded which can greatly increase the user experience.
 Note: this is an experimental feature. Switch it off if you experience problems.</description>
         </property>
+        <property key="transitionBeforePosition" type="enumeration" defaultValue="onNavigation">
+            <caption>Set transition</caption>
+            <category>Advanced</category>
+            <description>The transitions used in the tab 'Transition classes' are usually set before navigating a page. This works fine in an online app. In Offline mode, the transition should be set on a view change. Set it to this option if you experience problems with the transitions (titles showing up before you transition).</description>
+            <enumerationValues>
+              <enumerationValue key="onNavigation">On navigation</enumerationValue>
+              <enumerationValue key="onPersistViewChange">On view change (offline)</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="onPauseTransitionTimeout" type="integer" required="true" defaultValue="10">
+            <caption>On pause timeout</caption>
+            <category>Advanced</category>
+            <description>When pausing the app (suspend, without quitting) transitions should be cancelled to prevent unwanted behavior in older Android versions. We set a timeout (in ms) to cancel the transition after the app is paused. Only change this setting when needed.</description>
+        </property>
         <property key="disableOnLogout" type="boolean" defaultValue="true">
             <caption>Disable on logout</caption>
             <category>Advanced</category>
