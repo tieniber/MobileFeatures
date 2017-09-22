@@ -81,16 +81,28 @@ This feature will override the normal Mendix dialog with a native mobile one.
 
 ### Connection Error
 
-This feature is planned for a next version
+This feature is planned for the future. Right now it is not stable and disabled.
 
 ### Advanced
 
-**Note: These are all experimental options and might break in future Mendix versions. Please switch them off if it causes any problems (and create an issue here)**
+**Note: (1) These are all experimental options and might break in future Mendix versions. Please switch them off if it causes any problems (and create an issue here)**
 
-- List view lazy load
+- **List view lazy load** (1)
 
 When this feature is turned on the list view will render the items after the page is loaded which can greatly increase the user experience.
 
-- Group box lazy load
+- **Group box lazy load** (1)
 
 When this feature is turned on the group box will render the items after the page is loaded which can greatly increase the user experience. You can add the `lazy` class to the groupbox to remove the spacing and borders.
+
+- **Set transition**
+
+The transitions used in the tab 'Transition classes' are usually set **before navigating** a page. This works fine in an online app. In Offline mode, the transition should be set on a **view change**. Set it to this option if you experience problems with the transitions (titles showing up before you transition).
+
+- **On pause timeout**
+
+Only change this setting when needed. When pausing the app (suspend, without quitting) transitions should be cancelled to prevent unwanted behavior in older Android versions (we can't reproduce this on Android 7, but have seen it on Android 5). We set a timeout (in ms) to cancel the transition after the app is paused.
+
+- **Disable on logout**
+
+The widget might run into problems with the spinner when the login page does not have a layout with the MobileFeatures widget. This option makes sure the widget is completely disabled on logout. If you do use this widget in the layout that is part of the login page, you can switch this off.
