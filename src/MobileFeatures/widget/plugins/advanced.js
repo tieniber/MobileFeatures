@@ -44,8 +44,6 @@ define([
                     cb();
                 }
             };
-        },
-
-        _enableListView
+        }
     });
 });
